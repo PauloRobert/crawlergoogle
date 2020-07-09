@@ -12,7 +12,7 @@ class RestaurantsSpider(scrapy.Spider):
     allowed_domains = ['google.com']
     start_urls = ['https://google.com']
 
-    search_option = input("Enter your search option : ")
+    search_option = input("Selecione um termo a ser pesquisado: ")
 
     def parse(self, response):
         chrome_path = which('chromedriver')
@@ -23,10 +23,10 @@ class RestaurantsSpider(scrapy.Spider):
             "//input[@class='gLFyf gsfi']")
         search_box.send_keys(''' %s ''' % self.search_option)
         search_box.send_keys(Keys.ENTER)
-        time.sleep(1)
+        time.sleep(4)
         more_places = driver.find_element_by_xpath("//span[@class='i0vbXd']")
         more_places.click()
-        time.sleep(2)
+        time.sleep(5)
 
         shop = driver.find_elements_by_xpath("//div[@class='dbg0pd']")
         while True:
